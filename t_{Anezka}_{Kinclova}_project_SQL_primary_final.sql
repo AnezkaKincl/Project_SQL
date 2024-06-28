@@ -1,4 +1,4 @@
-CREATE TABLE t_{Anezka}_{Kinclova}_project_SQL_primary_final AS
+CREATE TABLE `t_{Anezka}_{Kinclova}_project_SQL_primary_final` AS
 SELECT 
     profession.`year`,
     food.price,
