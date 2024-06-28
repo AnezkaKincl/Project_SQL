@@ -1,14 +1,8 @@
 # Project_SQL
 V tomto projektu byly vytvořeny dvě tabulky. 
 První tabulka (t_{Anezka}_{Kinclova}_project_SQL_primary_final) shrnuje data z ČR o cenách potravin a mezd v letech 2006 – 2018.
-Druhá tabulka (t_{Anezka}_{Kinclova}_project_SQL_secondary_final) je ze stejného časového období (2006 – 2018). V této tabulce najdete informace o evropských zemích, které jsou rozděleny dle geopolitických částí:
-•	Central Europe and the Baltics
-•	Euro area
-•	Europe & Central Asia
-•	Europe & Central Asia (excluding high income)
-•	Europe & Central Asia (IDA & IBRD countries)
-•	European Union
-V této tabulce jsou informace o HDP, populaci a koeficientu gini v jednotlivých částech Evropy.
+Druhá tabulka (t_{Anezka}_{Kinclova}_project_SQL_secondary_final) je ze stejného časového období (2006 – 2018). V této tabulce najdete informace o evropských zemích, které jsou rozděleny dle geopolitických částí
+
 Tyto dvě tabulky posloužily jako podklad pro získání detailnějších informací o ČR i Evropě.
 V další části projektu jsme se zabývali těmito otázkami:
 •	Rostou v průběhu let mzdy ve všech odvětvích, nebo v některých klesají?
