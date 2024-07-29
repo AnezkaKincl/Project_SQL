@@ -1,40 +1,32 @@
 -- 3.	Která kategorie potravin zdražuje nejpomaleji (je u ní nejnižší percentuální meziroční nárůst)?
 -- s CTE (Common Table Expression)
-	
-WITH year_food_stats AS (
-    SELECT    
-        name AS food,
-        YEAR(date_from) AS year_food,
-        price_value AS `number`,
-        price_unit AS unit,
-        value AS price,
-        LAG(value) OVER (
-            PARTITION BY cpc.code 
-            ORDER BY cpc.name, YEAR(date_from)
-        ) AS LAG_price,
-        ABS(100 - (value * 100) / LAG(value) OVER (
-            PARTITION BY cpc.code 
-            ORDER BY cpc.name, YEAR(date_from)
-        )) AS prc_year_food
-    FROM czechia_price AS cp 
-    JOIN czechia_price_category AS cpc 
-        ON cp.category_code = cpc.code
-    GROUP BY 
-        cpc.name,
-        YEAR(date_from),
-        price_value,
-        price_unit
+WITH calculated_data AS (
+    SELECT 
+        `year`,
+        food,
+        price,
+        LAG(price) OVER (PARTITION BY food ORDER BY `year`) AS prev_price,
+        ABS((100 - (price * 100) / LAG(price) OVER (PARTITION BY food ORDER BY `year`))) AS prc_year_food
+    FROM
+        `t_{Anezka}_{Kinclova}_project_SQL_primary_final`
+    GROUP BY
+        `year`,
+        food,
+        price
+    ORDER BY 
+        food,
+        `year`
 )
 SELECT 
+    `year`,
     food,
-    year_food,
-    `number`,
-    unit,
     price,
-    LAG_price,
-    prc_year_food
-FROM year_food_stats
-WHERE prc_year_food = (
-    SELECT MIN(prc_year_food)
-    FROM year_food_stats
-	);
+    prev_price,
+    ROUND( prc_year_food,3) AS prc_year_food
+FROM
+    calculated_data
+WHERE
+    prc_year_food = 0
+ORDER BY
+	food,
+	`year`;
