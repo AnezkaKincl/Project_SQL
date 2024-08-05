@@ -30,6 +30,6 @@ FROM
 WHERE 
     (avg_salary - prev_avg_salary) < 0
 ORDER BY
-	(avg_salary - prev_avg_salary) DESC,
+    (avg_salary - prev_avg_salary) DESC,
     profession,
     `year`;
